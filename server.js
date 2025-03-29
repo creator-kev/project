@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-const expenseRoutes = require('./routes/expenseRoutes');
+const expenseRoutes = require('./expense-tracker/routes/expenseRoutes.js');
 app.use('/api/expenses', expenseRoutes);
 
 // Start Server
