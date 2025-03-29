@@ -7,12 +7,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/expense_tracker', {
-  useNewUrlParser: true,
+const dbUser = encodeURIComponent("gachokakevin"); // Encode special characters
+const dbPass = encodeURIComponent("kevingac");    // Encode special characters
+const dbName = "expense_tracker"; // Database name
+
+mongoose.connect(`mongodb://${dbUser}:${dbPass}@localhost:27017/${dbName}?authSource=admin`, {
+  useNewUrlParser: true, 
   useUnifiedTopology: true
 })
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.error('MongoDB Connection Error:', err));
+.then(() => console.log(' MongoDB Connected'))
+.catch(err => console.error(' MongoDB Connection Error:', err.message));
 
 // Middleware
 app.use(bodyParser.json());
